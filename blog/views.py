@@ -3,6 +3,7 @@ from django.utils import timezone
 from . models import Post, Comment
 from . forms import PostForm, CommentForm
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 
 def post_list(request):
     #posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
@@ -67,6 +68,7 @@ def add_comment_to_post(request, pk):
             comment = form.save(commit=False)
             comment.post = post
             comment.save()
+            return HttpResponseRedirect("/")
     else :
         form = CommentForm()
     return render(request, "blog/add_comment_to_post.html", {'form':form} )
