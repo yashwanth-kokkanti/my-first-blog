@@ -10,6 +10,7 @@ class Post(models.Model):
     
     def publish (self):
         self.publish_date = timezone.now()
+        print ("Saving Draft")
         self.save()
 
     def __str__(self):

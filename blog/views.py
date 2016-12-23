@@ -45,15 +45,17 @@ def post_edit(request, pk):
 def post_draft_list(request):
     posts = Post.objects.filter(published_date__isnull=True).order_by('created_date')
     return render(request, 'blog/post_draft_list.html', {'posts': posts})
-	
-@login_required
-def post_publish(request):
+
+@login_required	
+def post_publish(request, pk):
+    print ("Publish Method Called, -- pk = ", pk)
     post = get_object_or_404(Post, pk=pk)
+    post.published_date = timezone.now()
     post.publish()
     return redirect("post_detail", pk=pk)
 
 @login_required
-def post_remove (request):
+def post_remove (request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.delete()
     return redirect("post_list")
