@@ -48,9 +48,7 @@ def post_draft_list(request):
 
 @login_required	
 def post_publish(request, pk):
-    print ("Publish Method Called, -- pk = ", pk)
     post = get_object_or_404(Post, pk=pk)
-    post.published_date = timezone.now()
     post.publish()
     return redirect("post_detail", pk=pk)
 
