@@ -5,18 +5,18 @@
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 		<link rel="stylesheet" href="{% static 'css/blog.css' %}">
 		<link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-        <title>Django Yashwanth blog</title>
+        <title>Yashwanth blog</title>
     </head>
     <body>
 		<div class="page-header">
 			{% if user.is_authenticated %}
 			<a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
 			<a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-			<p class="top-menu">Hello {{ user.username }}<small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
+			<p class="top-menu">Hello {{ user.username }} &nbsp &nbsp<small><a href="{% url 'logout' %}">Sign out</a></small></p>
 			{% else %}
             <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
 			{% endif %}
-			<h1><a href="/">Django Yashwanth Blog</a></h1>
+			<h1><a href="/">Yashwanth Blog</a></h1>
 		</div>
 		<div class="content container">
 			<div class="row">
@@ -24,6 +24,15 @@
 				{% block content %}
 				{% endblock %}
 				</div>
+			</div>
+		</div>
+		<hr>
+		<div align=center>
+			Contact Details:<br/>
+			<div align=center>
+			<h3>		Owner 	: Yashwanth Reddy Kokkanti</h3> <br/>
+			<h4>		Mobile 	: +91-8867939436  </h4> <br/>
+			<h4>		Email 	: yashwanth.kokkanti@gmail.com </h4>
 			</div>
 		</div>
     </body>
