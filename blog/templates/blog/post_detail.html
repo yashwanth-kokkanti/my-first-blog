@@ -1,5 +1,7 @@
 {% extends 'blog/base.html' %}
 
+{% load static %}
+
 {% block content %}
     <div class="post">
         {% if post.published_date %}
@@ -12,9 +14,17 @@
 			<a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
 		{% endif %}
 		
-
+		<br/>
 		
 		<h1>{{ post.title }}</h1>
+		
+		{% if post.image != None and post.image != '' %}
+		<img src="{{ post.image.url }}" alt="Profile Pic" style="width:200px;height:200px;"> </img> 
+		{% else %}
+				 Missing Image!
+		{% endif %}
+		
+		<br/> <br/>
         <p>{{ post.text|linebreaksbr }}</p>
     </div>
 	<hr>
