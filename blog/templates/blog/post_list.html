@@ -3,12 +3,27 @@
 {% block content %}
 	{% for post in posts %}
 		<div class="post">
+			
 			<div class="date">
 				<p>Published: {{ post.published_date }}</p>
 			</div>
-			<h1><a href="{% url "post_detail" pk=post.pk %}">{{ post.title }}</a></h1>
-			<p>{{ post.text|linebreaksbr }}</p>
-			<a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a>
+			<div style="width:100%;">
+				<div style="display: table-row">
+					<div style="display:table-cell; width:200px;height:200px;">
+						{% if post.image != None and post.image != '' %}
+						<img src="{{ post.image.url }}" style="width:200px;height:200px;" />
+						{% else %}
+							Missing Image!
+						{% endif %}
+					</div>
+					<div style="width:20px;"> </div>
+					<div style="display: table-cell;">
+						<h1><a href="{% url "post_detail" pk=post.pk %}">{{ post.title }}</a></h1>
+						<p>{{ post.text|linebreaksbr }}</p>
+						<a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a>
+					</div>
+				</div>
+			</div>
 		</div>
 	{% endfor %}
 {% endblock %}
