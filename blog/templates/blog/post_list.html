@@ -3,17 +3,16 @@
 {% block content %}
 	{% for post in posts %}
 		<div class="post">
-			
 			<div class="date">
-				<p>Published: {{ post.published_date }}</p>
+		<p>Published: {{ post.published_date }}</p>
 			</div>
 			<div style="width:100%;">
 				<div style="display: table-row">
-					<div style="display:table-cell; width:200px;height:200px;">
+					<div style="display:table-cell; width:200px;height:0px;">
 						{% if post.image != None and post.image != '' %}
 						<img src="{{ post.image.url }}" style="width:150px;height:150px;" />
 						{% else %}
-							Missing Image!
+						<img src="/media/beautiful-trees-v.jpg" style="width:150px;height:150px;" />
 						{% endif %}
 					</div>
 					<div style="width:20px;"> </div>
