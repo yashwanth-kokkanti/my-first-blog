@@ -8,15 +8,15 @@
 			</div>
 			<div style="width:100%;">
 				<div style="display: table-row">
-					<div style="display:table-cell; width:200px;height:0px;">
+					<div style="display:table-cell; height:150px;">
 						{% if post.image != None and post.image != '' %}
 						<img src="{{ post.image.url }}" style="width:150px;height:150px;" />
 						{% else %}
 						<img src="/media/beautiful-trees-v.jpg" style="width:150px;height:150px;" />
 						{% endif %}
 					</div>
-					<div style="width:20px;"> </div>
-					<div style="display: table-cell;">
+					<div>&nbsp &nbsp &nbsp </div>
+					<div style="display: table-cell;height:150px; vertical-align:top; position:relative; top:-20px;">
 						<h1><a href="{% url "post_detail" pk=post.pk %}">{{ post.title }}</a></h1>
 						<p>{{ post.text|linebreaksbr }}</p>
 						<p>Posted by : {{ post.author }} </p>
