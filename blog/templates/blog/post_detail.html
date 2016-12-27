@@ -1,7 +1,5 @@
 {% extends 'blog/base.html' %}
 
-{% load static %}
-
 {% block content %}
     <div class="post">
         {% if post.published_date %}
@@ -19,9 +17,9 @@
 		<h1>{{ post.title }}</h1>
 		
 		{% if post.image != None and post.image != '' %}
-		<img src="{{ post.image.url }}" alt="Profile Pic" style="width:200px;height:200px;"> </img> 
+			<img src="{{ post.image.url }}" alt="Profile Pic" style="width:200px;height:200px;"> </img> 
 		{% else %}
-				 Missing Image!
+			<img src="/media/beautiful-trees-v.jpg" style="width:150px;height:150px;" />
 		{% endif %}
 		
 		<br/> <br/>
@@ -45,5 +43,5 @@
 				{% endif %}
 			{% empty %}
 				<p>No comments here yet :(</p>
-			{% endfor %}
+	{% endfor %}
 {% endblock %}
