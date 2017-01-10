@@ -1,15 +1,16 @@
 {% extends 'blog/base.html' %}
+{% load i18n %}
 
 {% block content %}
     {%  if posts %}
     {% for post in posts %}
 		<div class="post">
-            <p class="date">created: {{ post.created_date|date:'d-m-Y' }}</p>
+            <p class="date">{% trans "created" %}: {{ post.created_date|date:'d-m-Y' }}</p>
             <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
             <p>{{ post.text|truncatechars:200 }}</p>
         </div>
 	{% endfor %}
 	{% else %}
-	<h4 align=center>There are No Drafts Created So Far : </h4>
+	<h4 align=center>{%trans "There are No Drafts Created So Far" %} : </h4>
 	{% endif %}
 {% endblock %}

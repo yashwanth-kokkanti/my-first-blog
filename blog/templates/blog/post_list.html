@@ -1,10 +1,12 @@
 {% extends 'blog/base.html' %}
+{% load i18n %}
+
 
 {% block content %}
 	{% for post in posts %}
 		<div class="post">
 			<div class="date">
-		<p>Published: {{ post.published_date }}</p>
+		<p>{% trans "Published" %}: {{ post.published_date }}</p>
 			</div>
 			<div style="width:100%;">
 				<div style="display: table-row">
@@ -20,7 +22,7 @@
 						<h1><a href="{% url "post_detail" pk=post.pk %}">{{ post.title }}</a></h1>
 						<p>{{ post.text|linebreaksbr }}</p>
 						<p>Posted by : {{ post.author }} </p>
-						<a href="{% url 'post_detail' pk=post.pk %}">Total Comments: {{ post.comments.count }}</a>
+						<a href="{% url 'post_detail' pk=post.pk %}"> {% trans "Total Comments" %}: {{ post.comments.count }}</a>
 					</div>
 				</div>
 			</div>
