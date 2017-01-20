@@ -1,5 +1,4 @@
 {% extends 'blog/base.html' %}
-{% load i18n %}
 
 {% block content %}
     <div class="post">
@@ -8,7 +7,7 @@
                 {{ post.published_date }}
             </div>
 		{% else %}
-			<a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">{% trans "Publish" %}</a>
+			<a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
 			<a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
 			<a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
 		{% endif %}
@@ -26,7 +25,7 @@
 		<br/> <br/>
         <p>{{ post.text|linebreaksbr }}</p>
     </div>
-	<a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">{% trans "Add comment" %}</a>
+	<a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
 			{% for comment in post.comments.all %}
 				{% if user.is_authenticated or comment.approved_comment %}
 				<div class="comment">
@@ -42,6 +41,6 @@
 				</div>
 				{% endif %}
 			{% empty %}
-				<p>{% trans "No comments here yet" %} :(</p>
+				<p>No comments here yet :(</p>
 	{% endfor %}
 {% endblock %}
