@@ -26,4 +26,23 @@
 			</div>
 		</div>
 	{% endfor %}
+	
+	{% if users %}
+		<h4>Displaying all list of registered users</h4>
+	<table>	
+	{% for lUser in users %}
+	<tr>
+			{% if lUser.is_authenticated %}
+			<td>	<img src='/media/online.jpg' style='width:12px;height:12px;'></img> </td>
+			<td><b>&nbsp </b></td>
+			{% endif %}
+			<td> <b>	{{ lUser }}  </b>  </td> 
+			<td><b>&nbsp -> &nbsp</b></td>
+			<td><b> {{ lUser.email }} </b> <td/> 
+			<br/>
+	<tr/>
+	{% endfor %}
+	</table>
+	{% endif %}
+	
 {% endblock %}
