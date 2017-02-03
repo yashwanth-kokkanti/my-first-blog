@@ -18,6 +18,8 @@
 		
 		{% if post.image != None and post.image != '' %}
 			<img src="{{ post.image.url }}" alt="Profile Pic" style="width:200px;height:200px;"> </img> 
+			</br> </br>
+			<div class="fb-like" data-href="http://yashwanthkokkanti.pythonanywhere.com/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
 		{% else %}
 			<img src="/media/beautiful-trees-v.jpg" style="width:150px;height:150px;" />
 		{% endif %}
@@ -38,6 +40,7 @@
 					</div>
 					<strong>{{ comment.author }}</strong>
 					<p>{{ comment.text|linebreaks }}</p>
+						<div class="fb-like" data-href="http://yashwanthkokkanti.pythonanywhere.com/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
 				</div>
 				{% endif %}
 			{% empty %}
