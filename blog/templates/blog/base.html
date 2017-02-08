@@ -6,8 +6,13 @@
 		<link rel="stylesheet" href="{% static 'css/blog.css' %}">
 		<link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
         <title>Yashwanth blog</title>
+		<style>
+			.angular-google-map {
+			display: block;
+		}
+		</style>
     </head>
-    <body>
+    <body ng-app="angular-google-maps-example">
 		<div class="page-header">
 			{% if user.is_authenticated %}
 			<a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
@@ -17,13 +22,13 @@
             <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
 			{% endif %}
 			<table> <tr>
-				<td><img src="/media/yashwanth.jpg" style="width:120px;height:100px;"></img> </td> 
+				<td><img src="/media/yashwanth.jpg" style="width:80px;height:80px;"></img> </td> 
 				<td>&nbsp &nbsp &nbsp</td>
-				<td><h2><a href="/"style="color: white";>Yashwanth Blog</a></h2></td>
+				<td><h3><a href="/"style="color: white";>Yashwanth's Blog</a></h3></td>
 			</tr></table>
 		</div>
 			<marquee style="color:green">...This Site is Under Construction...</marquee>
-	<div class="content container">
+	<div class="content container" align=center>
 			<div class="row">
 				<div class="col-md-8">
 				{% block content %}
@@ -31,7 +36,21 @@
 				</div>
 			</div>
 	</div>
-	<div align=center style="background-color:lightgrey;">
+	</br>
+	<h3 align=center>Google Map</h3>
+	<div ng-controller="ExampleController" align=center>
+			<google-map
+			center="centerProperty"
+			zoom="zoomProperty" 
+			markers="markersProperty"
+			latitude="clickedLatitudeProperty"
+			longitude="clickedLongitudeProperty"
+			mark-click="true"
+			draggable="true"
+			style="height: 350px; width: 45%">
+		</google-map>
+	</div>
+	<div align=center style="background-color:silver;">
 			<hr/>
 			<table> <tr> <td>Contact Details : </td></tr></table>
 			<div align=center >
@@ -50,8 +69,30 @@
   js = d.createElement(s); js.id = id;
   js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8";
   fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+}(document, 'script', 'facebook-jssdk'));
+</script>
 
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false&language=en"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>
+<script src="{% static 'js/map.js' %}"></script>
+<script>
+		var module = angular.module("angular-google-maps-example", ["google-maps"]);
+		function ExampleController ($scope) {
+		angular.extend($scope, {
+		centerProperty: {
+			lat: 12,
+			lng: 77
+		},
+		zoomProperty: 6,
+		markersProperty: [ {
+				latitude: 45,
+				longitude: -74
+			}],
+		clickedLatitudeProperty: null,	
+		clickedLongitudeProperty: null,
+		});
+		}
+</script>
 </body>
 	
 </html>
