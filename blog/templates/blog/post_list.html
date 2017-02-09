@@ -2,13 +2,10 @@
 
 {% block content %}
 	{% for post in posts %}
-		<div class="post">
-			<div class="date">
-		<p>Published: {{ post.published_date }}</p>
-			</div>
-			<div style="width:100%;">
-				<div style="display: table-row">
-					<div style="display:table-cell; height:150px;">
+		<div class="post"">
+			<div style="width:100%; border-style:groove;">
+				<div style="display: table-row;">
+					<div style="display:table-cell, block; height:150px;">
 						{% if post.image != None and post.image != '' %}
 						<img src="{{ post.image.url }}" style="width:100px;height:100px;" />
 						</br> </br>
@@ -25,6 +22,9 @@
 						<a href="{% url 'post_detail' pk=post.pk %}">Total Comments: {{ post.comments.count }}</a>
 					</div>
 				</div>
+					<div class="date" align=center style="float:left">
+						<p>Published: {{ post.published_date }}</p>
+					</div>
 			</div>
 		</div>
 	{% endfor %}
