@@ -19,15 +19,20 @@ def post_detail(request, pk):
 	
 @login_required
 def post_new(request):
-    form = PostForm(request.POST, request.FILES)
-    if form.is_valid():
-        post = form.save(commit=False)
-        post.author = request.user
-        #post.image = request.FILES['image']
-        #post.published_date = timezone.now()
-        post.save()
-        return redirect('post_detail', pk=post.pk)
+    print ("request = ", request)
+    if request.method == "POST":
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            print ("Request inside Form is valid")
+            post = form.save(commit=False)
+            post.author = request.user
+            post.image = request.FILES['image']
+            #post.published_date = timezone.now()
+            print ("Method coming here")		
+            post.save()
+            return redirect('post_detail', pk=post.pk)
     else :
+        print ("Request inside Form is Not valid- Else")
         form = PostForm()
     return render(request, 'blog/post_edit.html', {'form':form})
 
