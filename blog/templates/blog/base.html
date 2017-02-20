@@ -38,6 +38,7 @@
 	</div>
 	</br>
 	<h3 align=center>Google Map</h3>
+	{% if request.path  == "/" %}
 	<div ng-controller="ExampleController" align=center>
 			<google-map
 			center="centerProperty"
@@ -50,6 +51,7 @@
 			style="height: 350px; width: 45%">
 		</google-map>
 	</div>
+	{% endif %}
 	<div align=center style="background-color:silver;">
 			<hr/>
 			<table> <tr> <td>Contact Details : </td></tr></table>

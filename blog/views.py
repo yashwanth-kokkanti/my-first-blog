@@ -27,6 +27,8 @@ def post_new(request):
             post = form.save(commit=False)
             post.author = request.user
             post.image = request.FILES['image']
+            post.text = form.cleaned_data['text']
+            post.title = form.cleaned_data['title']			
             #post.published_date = timezone.now()
             print ("Method coming here")		
             post.save()
@@ -78,7 +80,7 @@ def add_comment_to_post(request, pk):
             comment = form.save(commit=False)
             comment.post = post
             comment.save()
-            return HttpResponseRedirect("/")
+            return redirect("post_detail", pk=post.pk)
     else :
         form = CommentForm()
     return render(request, "blog/add_comment_to_post.html", {'form':form} )
