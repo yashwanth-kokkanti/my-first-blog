@@ -26,7 +26,7 @@ def post_new(request):
             print ("Request inside Form is valid")
             post = form.save(commit=False)
             post.author = request.user
-            post.image = request.FILES['image']
+            #post.image = request.FILES['image']
             post.text = form.cleaned_data['text']
             post.title = form.cleaned_data['title']			
             #post.published_date = timezone.now()
