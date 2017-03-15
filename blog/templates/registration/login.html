@@ -19,9 +19,10 @@
     <td>{{ form.password }}</td>
 </tr>
 </table>
-
-<input type="submit" value="login" />
+</br>
+<input type="submit" value="Login" />
 <input type="hidden" name="next" value="{{ next }}" />
 </form>
-
+New User Register Here
+</br><a href="{% url 'Register' %}"><button style="color:green">Register</button> </a>
 {% endblock %}
