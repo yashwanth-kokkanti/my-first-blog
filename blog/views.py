@@ -3,13 +3,23 @@ from django.utils import timezone
 from . models import Post, Comment
 from . forms import PostForm, CommentForm, RegistrationForm
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+import json
 
 def post_list(request):
     #posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
     users = User.objects.all()
-    posts = Post.objects.all()
+    posts_list = Post.objects.all()
+    paginator = Paginator(posts_list, 2)
+    page = request.GET.get('page')
+    try :
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
     return render(request, "blog/post_list.html", {'posts':posts, 'users':users})
 	
 def post_detail(request, pk):
@@ -115,3 +125,9 @@ def register(request):
     else :
         form = RegistrationForm()
     return render(request, "registration/register.html", {'form':form})
+
+@login_required
+def users_json(request):
+    users = User.objects.all()
+    data = [{'name':item.username, "email":item.email} for item in users]
+    return HttpResponse(json.dumps(data), content_type="application/json")

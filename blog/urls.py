@@ -15,4 +15,5 @@ urlpatterns = [
 	url(r'^comment/(?P<pk>\d+)/approve/$', views.comment_approve, name='comment_approve'),
 	url(r'^comment/(?P<pk>\d+)/remove/$', views.comment_remove, name='comment_remove'),
 	url(r'^register/$', views.register, name="Register"),
+	url(r'^users_json/$', views.users_json, name='users_json'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
